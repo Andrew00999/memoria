@@ -16,13 +16,19 @@ export const Search = () => {
   ];
 
   const data = [
-    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 10, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
-    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 10, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
-    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 10, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
-    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 10, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
-    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 10, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
-    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 10, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' }
+    { name: "Nicole Kidmann", id: "7512552212", class: "1C", score: 78, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
+    { name: "Floyd Miles", id: "7512552212", class: "1C", score: 65, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
+    { name: "Kathryn Murphy", id: "7512552212", class: "1C", score: 89, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
+    { name: "Arlene McCoy", id: "7512552212", class: "1C", score: 99, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
+    { name: "Theresa Webb", id: "7512552212", class: "1C", score: 88, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' },
+    { name: "Dianne Russell", id: "7512552212", class: "1C", score: 79, speed: 'Below Expected', parents: 'Antony Kidmann, Janelle Kidmann' }
   ];
+
+  const report = {
+    filename: 'Report.csv',
+    headers, 
+    data
+  }
 
 
   return (
@@ -40,7 +46,7 @@ export const Search = () => {
 
           <div className={classes.exportCSV}>
             <SearchSvgSelector id='exportCVS' />
-            <CSVLink className={classes.exportCSV} data={data} headers={headers}>
+            <CSVLink className={classes.exportCSV} {...report}>
               export csv
             </CSVLink>
 
