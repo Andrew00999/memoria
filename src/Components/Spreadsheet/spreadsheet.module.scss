@@ -1,0 +1,123 @@
+.spreadsheet {
+  width: 100%;
+  height: auto;
+}
+.sd_wrapper {
+  padding-bottom: 2rem;
+}
+.sd_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #777777;
+  opacity: 0.8;
+  padding: 14px 27px 14px 0;
+}
+.check {
+  margin: 16px 24px;
+}
+.sd_name {
+  width: 300px;
+  position: relative;
+}
+.sd_name::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  background: url(../../../public/img/name.webp) no-repeat center;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.sd_id {
+  width: 100px;
+  position: relative;
+}
+.sd_id::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  background: url(../../../public/img/id.webp) no-repeat center;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.sd_class {
+  width: 40px;
+}
+.sd_score {
+  width: 100px;
+  position: relative;
+}
+.sd_score::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  background: url(../../../public/img/id.webp) no-repeat center;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.sd_speed {
+  width: 140px;
+  position: relative;
+}
+.sd_speed::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  background: url(../../../public/img/id.webp) no-repeat center;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.sd_parents {
+  width: 300px;
+}
+
+.sd_body {
+  box-shadow: 0 0 20px #ccc;
+  border-radius: 8px;
+}
+
+.sd_body_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #828282;
+  padding: 14px 27px 14px 0;
+}
+.sd_body_row:nth-child(even) {
+  background-color: #F9F9F9;
+}
+
+.name_width {
+  width: 300px;
+}
+.id_width {
+  width: 100px;
+}
+.score_width {
+  width: 100px;
+}
+.speed_width {
+  width: 140px;
+}
+
+
+// colors
+

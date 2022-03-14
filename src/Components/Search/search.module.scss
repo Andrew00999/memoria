@@ -1,0 +1,60 @@
+.search {
+  width: 100%;
+  height: auto;
+  padding: 8px 0;
+}
+.search_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchTitle h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #5B5B5B;
+  text-transform: uppercase;
+}
+.search_form {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    z-index: 1;
+    background: url(../../../public/img/search_icon.webp);
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 12px;
+  } 
+  input {
+  width: 500px;
+  border: none;
+  background-color: #F2F2F2;
+  padding: 6px 12px;
+  color: #C0C0C0;
+  font-weight: 400;
+  z-index: 0;
+  &::placeholder {
+    color: #C0C0C0;
+    font-weight: 400;
+  }
+}
+}
+.exportCSV {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #C0C0C0;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,38 @@
+.filter {
+  width: 100%;
+  height: auto;
+  background-color: #5B5B5B;
+  padding: 1rem 0;
+  font-size: 14px;
+}
+
+.filters_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  div {
+    margin-right: 3rem;
+  }
+}
+
+.styled_xmark {
+  font-size: 16px;
+  color: #C0C0C0;
+}
+.clear {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  text-transform: uppercase;
+  color: #C0C0C0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  p {
+    margin-left: 10px;
+    line-height: 1;
+  }
+}
+
