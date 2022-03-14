@@ -49,12 +49,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  p {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-    color: #C0C0C0;
-    margin-left: 10px;
-  }
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #C0C0C0;
+  margin-left: 10px;
+  text-decoration: none;
 }
