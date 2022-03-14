@@ -87,8 +87,8 @@
 }
 
 .sd_body {
-  box-shadow: 0 0 20px #ccc;
-  border-radius: 8px;
+  // box-shadow: 0 0 20px #ccc;
+  cursor: pointer;
 }
 
 .sd_body_row {
@@ -101,7 +101,7 @@
   color: #828282;
   padding: 14px 27px 14px 0;
 }
-.sd_body_row:nth-child(even) {
+li:nth-child(even) .sd_body_row {
   background-color: #F9F9F9;
 }
 
@@ -120,4 +120,34 @@
 
 
 // colors
+
+.primaryBlue {
+  color: #4285F4
+}
+.primaryRed {
+  color: #DB4437;
+}
+.primaryGreen {
+  color: #0F9D58;
+}
+.primaryOrange {
+  color: #E2B534;
+}
+
+
+
+
+
+// accordion
+
+.accordion {
+  padding: 20px 0;
+  background-color: #F2F2F2;
+}
+
+.null_list {
+  margin: 0;
+  padding: 0;
+  list-style: 0;
+}
 

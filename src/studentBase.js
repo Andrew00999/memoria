@@ -1,9 +1,9 @@
 export const studentBase = [
   {
     name: 'Nicole Kidmann',
-    id: 123456,
+    id: 7512552212,
     class: '1C',
-    score: '76%',
+    score: 10,
     speed: 'Below Expected',
     parents: ['Antony Kidmann', 'Janelle Kidmann'],
     tests: [
