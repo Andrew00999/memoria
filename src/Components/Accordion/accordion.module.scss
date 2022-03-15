@@ -23,6 +23,8 @@
   display: flex;
   align-items: center;
   margin: 14px 0;
+  border-bottom: 2px solid #A6192E;
+  padding-bottom: 16px;
 }
 
 .select {
@@ -58,12 +60,229 @@
 }
 .input_wrap {
   position: relative;
+  display: flex;
   &::after {
     content: '';
     position: absolute;
     display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
     width: 20px;
     height: 20px;
     background-image: url(../../../public/img/calendar.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+.reload {
+  width: 20px;
+  height: 20px;
+  margin-left: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100%;
+  }
+}
+.desc_title {
+  color: #777777;
+}
+
+.score_row span {
+  margin-right: 50px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+
+// colors
+.primaryBlue {
+  color: #4285F4
+}
+.primaryRed {
+  color: #DB4437;
+}
+.primaryGreen {
+  color: #0F9D58;
+}
+.primaryOrange {
+  color: #E2B534;
+}
+
+
+// circles
+.blue_circle,
+.green_circle,
+.orange_circle,
+.red_circle {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+}
+
+.blue_circle {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #4285F4;
+}
+}
+.green_circle {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #0F9D58;
+}
+}
+.orange_circle {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  background-color: #E2B534;
+}
+}
+.red_circle {
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  background-color: #DB4437;
+}
+}
+
+// table
+
+.table_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+  p {
+    color: #777777;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.average {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  p {
+    color: #777777;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  h4 {
+    color: #777777;
+  }
+}
+
+
+.number {
+  width: 22px;
+}
+.test {
+  width: 300px;
+}
+.score {
+  width: 50px;
+}
+.speed {
+  width: 115px;
+}
+.total {
+  width: 100px;
+}
+.exp_speed {
+  width: 120px;
+}
+.concept {
+  width: 152px;
+}
+.date {
+  width: 112px;
+  position: relative;
+}
+.date_body {
+  width: 112px;
+}
+.date::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  background: url(../../../public/img/id.webp) no-repeat center;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+}
+.absent {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.body_wrap {
+  border-bottom: 3px solid #A6192E;
+  padding: 20px 0;
+}
+
+.active_row {
+  border: 2px solid transparent;
+  transition: .3s ease-in-out;
+  &:hover {
+    background-color: #F7E5E5;
+    border: 2px solid #A6192E;
   }
 }
