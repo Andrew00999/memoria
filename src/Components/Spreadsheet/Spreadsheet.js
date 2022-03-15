@@ -4,13 +4,11 @@ import '../../globalStyles.scss'
 import { studentBase } from '../../studentBase'
 import { HeaderSvgSelector } from '../Header/HeaderSvgSelector'
 import classNames from 'classnames'
+import Accordion from '../Accordion'
 
 export const Spreadsheet = () => {
   const [openedId, setOpenedId] = useState(0)
 
-  const inputClick = event => {
-    event.stopPropagation()
-  }
 
   const handleShowMore = useCallback((e) => {
     const id = e.currentTarget.getAttribute('data-id')
@@ -24,7 +22,7 @@ export const Spreadsheet = () => {
         return (
           <li key={index} className={styles.sd_body}>
             <div className={styles.sd_body_row} onClick={handleShowMore} data-id={itemValue}>
-              <input onClick={inputClick} className={styles.check} type='checkbox' />
+              <input onClick={(e) => e.stopPropagation()} className={styles.check} type='checkbox' />
               <p className={styles.name_width}>{sb.name}</p>
               <p className={styles.id_width}>{sb.id}</p>
               <p className={styles.sd_class}>{sb.class}</p>
@@ -34,9 +32,7 @@ export const Spreadsheet = () => {
               <HeaderSvgSelector id='svg' />
             </div>
             {openedId === itemValue && (
-              <div className={styles.accordion}>
-                Hello
-              </div>
+              <Accordion />
             )}
           </li>
         )
