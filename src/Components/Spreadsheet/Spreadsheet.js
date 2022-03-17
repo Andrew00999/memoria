@@ -45,8 +45,8 @@ export const Spreadsheet = () => {
               <p className={classNames({
                   [`${styles.score_width}`]: true,
                   [`${styles.primaryRed}`]: +score <= 50,
-                  [`${styles.primaryOrange}`]: +score > 50 && +score <= 75,
-                  [`${styles.primaryGreen}`]: +score >= 76 && +score <=89,
+                  [`${styles.primaryOrange}`]: +score > 50 && +score <= 79,
+                  [`${styles.primaryGreen}`]: +score >= 80 && +score <= 89,
                   [`${styles.primaryBlue}`]: +score >= 90 && +score <= 100
               })}>{el.score}</p>
               <p className={classNames({
