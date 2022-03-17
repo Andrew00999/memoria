@@ -1,34 +1,61 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import styles from './spreadsheet.module.scss'
 import '../../globalStyles.scss'
 import { studentBase } from '../../studentBase'
 import { HeaderSvgSelector } from '../Header/HeaderSvgSelector'
 import classNames from 'classnames'
 import Accordion from '../Accordion'
+import axios from 'axios'
 
 export const Spreadsheet = () => {
   const [openedId, setOpenedId] = useState(0)
+  const [students, setStudents] = useState([])
+  const belowExpected = 'Below Expected'
+  const aboveExpected = 'Above Expected'
+  const asExpected = 'As Expected'
 
+  console.warn('belowExpected', belowExpected)
+
+  const getStusents = useCallback(async (e) => {
+    const params = {
+      page: 1,
+      size: 10
+    }
+    const response = await axios.get(`https://test-task-j.herokuapp.com/data`, { params })
+    await setStudents(response.data.data);
+  }, [])
 
   const handleShowMore = useCallback((e) => {
     const id = e.currentTarget.getAttribute('data-id')
     setOpenedId(+id === openedId ? null : +id)
   }, [setOpenedId, openedId])
 
-  const geList = useCallback((listCount, sb) => {
+  const getList = useCallback((sb) => {
     return (
-      [...new Array(listCount)].map((el, index) => {
+      students.map((el, index) => {
+        const score = el.score.replace(/%/g, '');
         const itemValue = index + 1;
         return (
-          <li key={index} className={styles.sd_body}>
+          <li key={el.id} className={styles.sd_body}>
             <div className={styles.sd_body_row} onClick={handleShowMore} data-id={itemValue}>
               <input onClick={(e) => e.stopPropagation()} className={styles.check} type='checkbox' />
-              <p className={styles.name_width}>{sb.name}</p>
-              <p className={styles.id_width}>{sb.id}</p>
-              <p className={styles.sd_class}>{sb.class}</p>
-              <p className={classNames(styles.score_width, styles.primaryOrange)}>{`${sb.score + itemValue}%`}</p>
-              <p className={classNames(styles.speed_width, styles.primaryRed)}>{sb.speed}</p>
-              <p className={styles.sd_parents}>{sb.parents}</p>
+              <p className={styles.name_width}>{el.name}</p>
+              <p className={styles.id_width}>{el.id}</p>
+              <p className={styles.sd_class}>{el.class}</p>
+              <p className={classNames({
+                  [`${styles.score_width}`]: true,
+                  [`${styles.primaryRed}`]: +score <= 50,
+                  [`${styles.primaryOrange}`]: +score > 50 && +score <= 75,
+                  [`${styles.primaryGreen}`]: +score >= 76 && +score <=89,
+                  [`${styles.primaryBlue}`]: +score >= 90 && +score <= 100
+              })}>{el.score}</p>
+              <p className={classNames({
+                  [`${styles.speed_width}`]: true,
+                  [`${styles.primaryRed}`]: el.speed === belowExpected,
+                  [`${styles.primaryBlue}`]: el.speed === aboveExpected,
+                  [`${styles.primaryGreen}`]: el.speed === asExpected,
+                })}>{el.speed}</p>
+              <p className={styles.sd_parents}>{el.parents}</p>
               <HeaderSvgSelector id='svg' />
             </div>
             {openedId === itemValue && (
@@ -38,7 +65,13 @@ export const Spreadsheet = () => {
         )
       })
     );
-  }, [handleShowMore, openedId]);
+  }, [handleShowMore, openedId, students]);
+
+  useEffect(() => {
+    if (!students.length) {
+      getStusents();
+    }
+  }, [getStusents, students.length]);
 
   return (
     <div className={styles.spreadsheet}>
@@ -55,7 +88,7 @@ export const Spreadsheet = () => {
               <p className={styles.sd_parents}>Parents</p>
               <span style={{ width: '15px' }}></span>
             </div>
-            <ul className={styles.null_list}>{geList(10, sb)}</ul>
+            <ul className={styles.null_list}>{getList(10, sb)}</ul>
           </div>
         ))}
       </div>

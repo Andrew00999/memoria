@@ -29,7 +29,7 @@ export const Header = () => {
 
         <div className={styles.header_profile}>
           <div className={styles.header_profile_img_block}>
-            <img src='/img/profile_photo.webp' alt='profile_photo' />
+            <img src='./img/profile_photo.webp' alt='profile_photo' />
           </div>
           <div>
             <HeaderSvgSelector id='svg' />
