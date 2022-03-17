@@ -43,18 +43,18 @@ export const Spreadsheet = () => {
               <p className={styles.id_width}>{el.id}</p>
               <p className={styles.sd_class}>{el.class}</p>
               <p className={classNames({
-                  [`${styles.score_width}`]: true,
-                  [`${styles.primaryRed}`]: +score <= 50,
-                  [`${styles.primaryOrange}`]: +score > 50 && +score <= 79,
-                  [`${styles.primaryGreen}`]: +score >= 80 && +score <= 89,
-                  [`${styles.primaryBlue}`]: +score >= 90 && +score <= 100
+                [`${styles.score_width}`]: true,
+                [`${styles.primaryRed}`]: +score <= 50,
+                [`${styles.primaryOrange}`]: +score > 50 && +score <= 79,
+                [`${styles.primaryGreen}`]: +score >= 80 && +score <= 89,
+                [`${styles.primaryBlue}`]: +score >= 90 && +score <= 100
               })}>{el.score}</p>
               <p className={classNames({
-                  [`${styles.speed_width}`]: true,
-                  [`${styles.primaryRed}`]: el.speed === belowExpected,
-                  [`${styles.primaryBlue}`]: el.speed === aboveExpected,
-                  [`${styles.primaryGreen}`]: el.speed === asExpected,
-                })}>{el.speed}</p>
+                [`${styles.speed_width}`]: true,
+                [`${styles.primaryRed}`]: el.speed === belowExpected,
+                [`${styles.primaryBlue}`]: el.speed === aboveExpected,
+                [`${styles.primaryGreen}`]: el.speed === asExpected,
+              })}>{el.speed}</p>
               <p className={styles.sd_parents}>{el.parents}</p>
               <HeaderSvgSelector id='svg' />
             </div>
@@ -89,6 +89,25 @@ export const Spreadsheet = () => {
               <span style={{ width: '15px' }}></span>
             </div>
             <ul className={styles.null_list}>{getList(10, sb)}</ul>
+            <div className={styles.nav_pagination}>
+              <div className={styles.pagination_select}>
+                <span>Rows per page:</span>
+                <select>
+                  <option>10</option>
+                  <option>25</option>
+                  <option>50</option>
+                  <option>75</option>
+                  <option>all</option>
+                </select>
+              </div>
+              <div className={styles.pagination_pages}>
+                <span>21-30 of 100</span>
+              </div>
+              <div>
+                <button className={styles.arrow}>ᐸ</button>
+                <button className={styles.arrow}>ᐳ</button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

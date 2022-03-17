@@ -151,3 +151,30 @@ li:nth-child(even) .sd_body_row {
   list-style: 0;
 }
 
+
+
+// pagination
+
+.nav_pagination {
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:first-child {
+    margin-right: 30px;
+  }
+}
+.pagination_pages {
+  margin: 0 25px;
+}
+.pagination_select select {
+  border: none;
+  background: transparent;
+  margin-left: 20px;
+}
