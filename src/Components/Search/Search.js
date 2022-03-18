@@ -4,7 +4,7 @@ import classes from './search.module.scss'
 import { SearchSvgSelector } from './SearchSvgSelector'
 import { CSVLink } from 'react-csv'
 
-export const Search = () => {
+export const Search = ({ changeInput }) => {
 
   const headers = [
     { label: "name", key: "name" },
@@ -26,7 +26,7 @@ export const Search = () => {
 
   const report = {
     filename: 'Report.csv',
-    headers, 
+    headers,
     data
   }
 
@@ -41,7 +41,11 @@ export const Search = () => {
           </div>
 
           <form className={classes.search_form}>
-            <input type='text' placeholder='Enter Student Name, Parent or ID here' />
+            <input
+              type='text'
+              placeholder='Enter Student Name, Parent or ID here'
+              onChange={changeInput}
+            />
           </form>
 
           <div className={classes.exportCSV}>

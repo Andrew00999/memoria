@@ -10,7 +10,7 @@ import Pagination from './Pagination'
 
 
 
-export const Spreadsheet = () => {
+export const Spreadsheet = ({ value }) => {
   const [openedId, setOpenedId] = useState(0)
   const [students, setStudents] = useState([])
   const [loading, setLoading] = useState([])
@@ -26,8 +26,16 @@ export const Spreadsheet = () => {
   const firstStudentIndex = lastStudentIndex - studentsPerPage
   const currentStudent = students.slice(firstStudentIndex, lastStudentIndex)
 
-  const paginate = pageNumder => setCurrentPage(pageNumder)
 
+  const filteredStudents = students.filter(student => {
+    return (
+      student.name.toLowerCase().includes(value.toLowerCase())
+    )
+  })
+
+
+
+  const paginate = pageNumder => setCurrentPage(pageNumder)
 
 
   const getStusents = useCallback(async (e) => {
@@ -46,8 +54,9 @@ export const Spreadsheet = () => {
   }, [setOpenedId, openedId])
 
   const getList = useCallback((sb) => {
+    const filteredAndCurrentStudent = [...filteredStudents, ...currentStudent]
     return (
-      currentStudent.map((el, index) => {
+      filteredAndCurrentStudent.map((el, index) => {
         const score = el.score.replace(/%/g, '');
         const itemValue = index + 1;
         if (loading) {
@@ -83,7 +92,7 @@ export const Spreadsheet = () => {
         )
       })
     );
-  }, [currentStudent, handleShowMore, loading, openedId]);
+  }, [currentStudent, filteredStudents, handleShowMore, loading, openedId]);
 
   useEffect(() => {
     if (!students.length) {

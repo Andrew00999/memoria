@@ -281,6 +281,7 @@
 .active_row {
   border: 2px solid transparent;
   transition: .3s ease-in-out;
+  margin-bottom: 5px;
   &:hover {
     background-color: #F7E5E5;
     border: 2px solid #A6192E;
