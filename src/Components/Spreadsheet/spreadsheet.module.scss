@@ -161,6 +161,7 @@ li:nth-child(even) .sd_body_row {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #5B5B5B;
 }
 .arrow {
   border: none;
@@ -177,4 +178,6 @@ li:nth-child(even) .sd_body_row {
   border: none;
   background: transparent;
   margin-left: 20px;
+  color: #5B5B5B;
+  cursor: pointer;
 }

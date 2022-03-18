@@ -14,8 +14,6 @@ export const Spreadsheet = () => {
   const aboveExpected = 'Above Expected'
   const asExpected = 'As Expected'
 
-  console.warn('belowExpected', belowExpected)
-
   const getStusents = useCallback(async (e) => {
     const params = {
       page: 1,
@@ -36,7 +34,7 @@ export const Spreadsheet = () => {
         const score = el.score.replace(/%/g, '');
         const itemValue = index + 1;
         return (
-          <li key={el.id} className={styles.sd_body}>
+          <li key={index} className={styles.sd_body}>
             <div className={styles.sd_body_row} onClick={handleShowMore} data-id={itemValue}>
               <input onClick={(e) => e.stopPropagation()} className={styles.check} type='checkbox' />
               <p className={styles.name_width}>{el.name}</p>
@@ -101,7 +99,7 @@ export const Spreadsheet = () => {
                 </select>
               </div>
               <div className={styles.pagination_pages}>
-                <span>21-30 of 100</span>
+                <span>1-10 of 100</span>
               </div>
               <div>
                 <button className={styles.arrow}>ᐸ</button>

@@ -1,27 +1,51 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import styles from './accordion.module.scss'
 import { studentBase } from '../../studentBase'
 import { HeaderSvgSelector } from '../Header/HeaderSvgSelector'
+import axios from 'axios'
 
 
 export const Accordion = () => {
+  const [studentsState, setStudentsState] = useState([])
+  const [testsState, setTestsState] = useState([])
+
+  const getStusents = useCallback(async (e) => {
+    const params = {
+      page: 1,
+      size: 10
+    }
+    const response = await axios.get(`https://test-task-j.herokuapp.com/data`, { params })
+    setStudentsState(response.data.data);
+
+    studentsState.map(studentState => {
+      return setTestsState(studentState.tests)
+    })
+
+  }, [studentsState])
 
 
-  const getList = useCallback((listCount, sb) => {
+  useEffect(() => {
+    if (!testsState.length) {
+      getStusents();
+    }
+  }, [getStusents, testsState]);
+
+
+  const getList = useCallback((sb) => {
     return (
-      [...new Array(listCount)].map((el, index) => {
+      testsState.map((el, index) => {
         const itemValue = index + 1;
         return (
           <li key={index} className={styles.active_row} >
             <div className={styles.table_title}>
               <p className={styles.number}>{itemValue}.</p>
-              <p className={styles.test}>Finding Averages 1 to 400</p>
-              <p className={styles.score}>350</p>
-              <p className={styles.speed}>1h 12m 41s</p>
-              <p className={styles.total}>400</p>
-              <p className={styles.exp_speed}>01h 00m 00s</p>
-              <p className={styles.concept}>Multiplication</p>
-              <p className={styles.date_body}>APR 30 2021</p>
+              <p className={styles.test}>{el.label}</p>
+              <p className={styles.score}>{el.score}</p>
+              <p className={styles.speed}>{el.speed}</p>
+              <p className={styles.total}>{el.total}</p>
+              <p className={styles.exp_speed}>{el.expSpeed}</p>
+              <p className={styles.concept}>{el.concept}</p>
+              <p className={styles.date_body}>{el.date}</p>
               <p className={styles.absent}>
                 <input type='checkbox' />
               </p>
@@ -31,13 +55,13 @@ export const Accordion = () => {
       }
       )
     )
-  }, [])
+  }, [testsState])
 
 
   return (
     <div className={styles.accordion}>
       {studentBase.map((key) => (
-        <div className={styles.body_wrap}>
+        <div key={key} className={styles.body_wrap}>
 
           <div className={styles.title}>
             <span>student: <strong>{key.name}</strong></span>
@@ -102,15 +126,15 @@ export const Accordion = () => {
               <p className={styles.absent}>Absent</p>
             </div>
 
-            {getList(5)}
+            {getList(10)}
           </div>
         </div>
       ))}
       <div className={styles.average}>
         <p className={styles.number}> </p>
-        <h4 style={{marginRight: '7px'}} className={styles.test}>Average</h4>
-        <p style={{color: '#4285F4'}} className={styles.score}><strong>96%</strong></p>
-        <p style={{color: '#4285F4'}} className={styles.speed}><strong>Abouve Expected</strong></p>
+        <h4 style={{ marginRight: '7px' }} className={styles.test}>Average</h4>
+        <p style={{ color: '#4285F4' }} className={styles.score}><strong>96%</strong></p>
+        <p style={{ color: '#4285F4' }} className={styles.speed}><strong>Abouve Expected</strong></p>
       </div>
 
     </div>
