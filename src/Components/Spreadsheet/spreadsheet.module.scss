@@ -135,9 +135,6 @@ li:nth-child(even) .sd_body_row {
 }
 
 
-
-
-
 // accordion
 
 .accordion {
@@ -171,13 +168,35 @@ li:nth-child(even) .sd_body_row {
     margin-right: 30px;
   }
 }
-.pagination_pages {
-  margin: 0 25px;
-}
 .pagination_select select {
   border: none;
   background: transparent;
   margin-left: 20px;
   color: #5B5B5B;
   cursor: pointer;
+}
+
+.selected {
+  cursor: pointer;
+}
+
+
+// pagination
+.link_pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  li {
+    margin: 1rem 1rem 0 0;
+    a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #777777;
+      cursor: pointer;
+    }
+    &:last-child {
+      margin: 1rem 0 0 0;
+    }
+  }
 }

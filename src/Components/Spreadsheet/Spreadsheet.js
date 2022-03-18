@@ -6,21 +6,38 @@ import { HeaderSvgSelector } from '../Header/HeaderSvgSelector'
 import classNames from 'classnames'
 import Accordion from '../Accordion'
 import axios from 'axios'
+import Pagination from './Pagination'
+
+
 
 export const Spreadsheet = () => {
   const [openedId, setOpenedId] = useState(0)
   const [students, setStudents] = useState([])
+  const [loading, setLoading] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [studentsPerPage] = useState(10)
+
+
   const belowExpected = 'Below Expected'
   const aboveExpected = 'Above Expected'
   const asExpected = 'As Expected'
 
+  const lastStudentIndex = currentPage * studentsPerPage
+  const firstStudentIndex = lastStudentIndex - studentsPerPage
+  const currentStudent = students.slice(firstStudentIndex, lastStudentIndex)
+
+  const paginate = pageNumder => setCurrentPage(pageNumder)
+
+
+
   const getStusents = useCallback(async (e) => {
     const params = {
       page: 1,
-      size: 10
+      size: 20
     }
     const response = await axios.get(`https://test-task-j.herokuapp.com/data`, { params })
-    await setStudents(response.data.data);
+    setStudents(response.data.data);
+    setLoading(false)
   }, [])
 
   const handleShowMore = useCallback((e) => {
@@ -30,9 +47,12 @@ export const Spreadsheet = () => {
 
   const getList = useCallback((sb) => {
     return (
-      students.map((el, index) => {
+      currentStudent.map((el, index) => {
         const score = el.score.replace(/%/g, '');
         const itemValue = index + 1;
+        if (loading) {
+          return <h2>Loading...</h2>
+        }
         return (
           <li key={index} className={styles.sd_body}>
             <div className={styles.sd_body_row} onClick={handleShowMore} data-id={itemValue}>
@@ -63,7 +83,7 @@ export const Spreadsheet = () => {
         )
       })
     );
-  }, [handleShowMore, openedId, students]);
+  }, [currentStudent, handleShowMore, loading, openedId]);
 
   useEffect(() => {
     if (!students.length) {
@@ -86,24 +106,15 @@ export const Spreadsheet = () => {
               <p className={styles.sd_parents}>Parents</p>
               <span style={{ width: '15px' }}></span>
             </div>
-            <ul className={styles.null_list}>{getList(10, sb)}</ul>
+            <ul className={styles.null_list}>{getList(sb)}</ul>
             <div className={styles.nav_pagination}>
               <div className={styles.pagination_select}>
-                <span>Rows per page:</span>
-                <select>
-                  <option>10</option>
-                  <option>25</option>
-                  <option>50</option>
-                  <option>75</option>
-                  <option>all</option>
-                </select>
-              </div>
-              <div className={styles.pagination_pages}>
-                <span>1-10 of 100</span>
-              </div>
-              <div>
-                <button className={styles.arrow}>ᐸ</button>
-                <button className={styles.arrow}>ᐳ</button>
+                <span>Rows per page: 10 / 20</span>
+                <Pagination
+                  studentsPerPage={studentsPerPage}
+                  totalStudents={students.length}
+                  paginate={paginate}
+                />
               </div>
             </div>
           </div>
@@ -111,4 +122,5 @@ export const Spreadsheet = () => {
       </div>
     </div>
   )
+
 }

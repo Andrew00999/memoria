@@ -10,7 +10,7 @@ export function App() {
       <Header />
       <Filter />
       <Search />
-      <Spreadsheet />
+      <Spreadsheet itemsPerPage={4} />
     </>
   );
 }
